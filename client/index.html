@@ -3,10 +3,124 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accessibility Audit Project</title>
+  <title>Accessible Dashboard</title>
 </head>
+
 <body>
-  <h1>Accessibility Audit Project</h1>
-  <p>Project skeleton for the accessibility audit.</p>
+
+  <header>
+    <h1>Accessible Dashboard</h1>
+
+    <nav aria-label="Main navigation">
+      <a href="#dashboard">Dashboard</a>
+      <a href="#reports">Reports</a>
+      <a href="#settings">Settings</a>
+    </nav>
+  </header>
+
+  <aside aria-label="Sidebar">
+    <h2>Dashboard Menu</h2>
+
+    <nav aria-label="Sidebar navigation">
+      <a href="#overview">Overview</a>
+      <a href="#users">Users</a>
+      <a href="#projects">Projects</a>
+    </nav>
+  </aside>
+
+  <main id="dashboard">
+
+    <section id="overview">
+      <h2>Overview</h2>
+
+      <article>
+        <h3>Total Users</h3>
+        <p>250</p>
+      </article>
+
+      <article>
+        <h3>Active Projects</h3>
+        <p>12</p>
+      </article>
+    </section>
+
+    <section id="reports">
+      <h2>Reports</h2>
+
+      <table>
+        <caption>Project Status</caption>
+
+        <thead>
+          <tr>
+            <th scope="col">Project</th>
+            <th scope="col">Status</th>
+            <th scope="col">Progress</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Website</td>
+            <td>Active</td>
+            <td>80%</td>
+          </tr>
+
+          <tr>
+            <td>Mobile App</td>
+            <td>Pending</td>
+            <td>40%</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="settings">
+      <h2>Settings</h2>
+
+      <form>
+        <fieldset>
+          <legend>Profile Settings</legend>
+
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+          >
+
+          <br><br>
+
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+          >
+
+          <br><br>
+
+          <button type="submit">Save Settings</button>
+        </fieldset>
+      </form>
+    </section>
+
+    <button type="button" id="openModal">
+      Open Information
+    </button>
+
+    <dialog id="infoModal">
+      <h2>Information</h2>
+      <p>This is an accessible modal dialog.</p>
+      <button type="button" id="closeModal">Close</button>
+    </dialog>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Accessible Dashboard</p>
+  </footer>
+
 </body>
 </html>
