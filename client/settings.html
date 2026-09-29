@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - Accessible Dashboard</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>Accessible Dashboard</h1>
+
+    <nav aria-label="Main navigation">
+      <a href="index.html">Dashboard</a>
+      <a href="reports.html">Reports</a>
+      <a href="settings.html">Settings</a>
+    </nav>
+  </header>
+
+  <aside aria-label="Sidebar">
+    <h2>Dashboard Menu</h2>
+
+    <nav aria-label="Sidebar navigation">
+      <a href="index.html#overview">Overview</a>
+      <a href="index.html#users">Users</a>
+      <a href="index.html#projects">Projects</a>
+    </nav>
+  </aside>
+
+  <main>
+
+    <section>
+      <h2>Settings</h2>
+
+      <article>
+        <h3>Profile Settings</h3>
+
+        <form action="#" method="post">
+
+          <fieldset>
+            <legend>Personal Information</legend>
+
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              autocomplete="name"
+            >
+
+            <br><br>
+
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              autocomplete="email"
+            >
+
+            <br><br>
+
+            <label for="phone">Phone Number:</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              autocomplete="tel"
+              aria-label="Phone Number"
+            >
+
+            <br><br>
+
+            <button type="submit">Save Settings</button>
+
+          </fieldset>
+
+        </form>
+
+      </article>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Accessible Dashboard</p>
+  </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports - Accessible Dashboard</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>Accessible Dashboard</h1>
+
+    <nav aria-label="Main navigation">
+      <a href="index.html">Dashboard</a>
+      <a href="reports.html">Reports</a>
+      <a href="settings.html">Settings</a>
+    </nav>
+  </header>
+
+  <aside aria-label="Sidebar">
+    <h2>Dashboard Menu</h2>
+
+    <nav aria-label="Sidebar navigation">
+      <a href="index.html#overview">Overview</a>
+      <a href="index.html#users">Users</a>
+      <a href="index.html#projects">Projects</a>
+    </nav>
+  </aside>
+
+  <main>
+
+    <section>
+      <h2>Reports</h2>
+
+      <article>
+        <h3>Project Status Report</h3>
+
+        <table>
+          <caption>Current Project Status</caption>
+
+          <thead>
+            <tr>
+              <th scope="col">Project</th>
+              <th scope="col">Status</th>
+              <th scope="col">Progress</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Website</td>
+              <td>Active</td>
+              <td>80%</td>
+            </tr>
+
+            <tr>
+              <td>Mobile App</td>
+              <td>Pending</td>
+              <td>40%</td>
+            </tr>
+
+            <tr>
+              <td>API Development</td>
+              <td>Completed</td>
+              <td>100%</td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Accessible Dashboard</p>
+  </footer>
+
+</body>
+
+</html>
