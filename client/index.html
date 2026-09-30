@@ -107,6 +107,44 @@
       </form>
     </section>
 
+
+    <section id="products">
+  <h2>Products</h2>
+
+  <label for="searchInput">Search products:</label>
+  <input
+    type="search"
+    id="searchInput"
+    placeholder="Search by product name"
+  >
+
+  <label for="categoryFilter">Category:</label>
+  
+  <select id="categoryFilter">
+    <option value="all">All Categories</option>
+  </select>
+
+  <div id="categoryTabs" role="tablist" aria-label="Product categories"></div>
+
+  <label for="sortSelect">Sort by:</label>
+  <select id="sortSelect">
+    <option value="default">Default</option>
+    <option value="price-low">Price: Low to High</option>
+    <option value="price-high">Price: High to Low</option>
+    <option value="name">Name: A to Z</option>
+  </select>
+
+  <div id="loadingMessage" class="skeleton-container">
+    <div class="skeleton-card"></div>
+    <div class="skeleton-card"></div>
+    <div class="skeleton-card"></div>
+  </div>
+
+  <p id="errorMessage" role="alert" hidden></p>
+
+  <div id="productList"></div>
+</section>
+
     <button type="button" id="openModal">
       Open Information
     </button>
@@ -122,6 +160,8 @@
   <footer>
     <p>&copy; 2026 Accessible Dashboard</p>
   </footer>
+
+  <script type="module" src="app.js"></script>
 
 </body>
 </html>
