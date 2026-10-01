@@ -55,7 +55,17 @@ function displayProducts(productsToDisplay) {
       <h3>${product.title}</h3>
       <p>Category: ${product.category}</p>
       <p>Price: $${product.price}</p>
+
+      <button type="button" class="add-cart-button">
+        Add to Cart
+      </button>
     `;
+
+    const addButton = article.querySelector(".add-cart-button");
+
+    addButton.addEventListener("click", () => {
+      addToCart(product);
+    });
 
     productList.appendChild(article);
   });
@@ -154,3 +164,146 @@ function saveSortPreference() {
 }
 
 sortSelect.addEventListener("change", saveSortPreference);
+
+
+// Authentication simulation
+
+const loginForm = document.getElementById("loginForm");
+const logoutButton = document.getElementById("logoutButton");
+const authMessage = document.getElementById("authMessage");
+const loginEmail = document.getElementById("loginEmail");
+
+function updateAuthenticationUI() {
+  const loggedInUser = localStorage.getItem("loggedInUser");
+
+  if (loggedInUser) {
+    authMessage.textContent = `Logged in as ${loggedInUser}`;
+    loginEmail.value = loggedInUser;
+    loginEmail.disabled = true;
+    logoutButton.hidden = false;
+  } else {
+    authMessage.textContent = "You are not logged in.";
+    loginEmail.disabled = false;
+    logoutButton.hidden = true;
+  }
+}
+
+loginForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const email = loginEmail.value;
+
+  localStorage.setItem("loggedInUser", email);
+
+  updateAuthenticationUI();
+});
+
+logoutButton.addEventListener("click", () => {
+  localStorage.removeItem("loggedInUser");
+
+  loginForm.reset();
+
+  updateAuthenticationUI();
+});
+
+updateAuthenticationUI();
+
+// Shopping cart
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const cartList = document.getElementById("cartList");
+const cartTotal = document.getElementById("cartTotal");
+
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function displayCart() {
+  cartList.innerHTML = "";
+
+  if (cart.length === 0) {
+    cartList.innerHTML = "<p>Your cart is empty.</p>";
+    cartTotal.textContent = "0.00";
+    return;
+  }
+
+  let total = 0;
+
+  cart.forEach((item) => {
+    const article = document.createElement("article");
+
+    article.innerHTML = `
+      <h3>${item.title}</h3>
+      <p>Price: $${item.price.toFixed(2)}</p>
+
+      <label for="quantity-${item.id}">
+        Quantity:
+      </label>
+
+      <input
+        type="number"
+        id="quantity-${item.id}"
+        min="1"
+        value="${item.quantity}"
+      >
+
+      <button type="button" data-id="${item.id}" class="remove-cart-item">
+        Remove
+      </button>
+    `;
+
+    const quantityInput = article.querySelector("input");
+
+    quantityInput.addEventListener("change", () => {
+      const newQuantity = Number(quantityInput.value);
+
+      if (newQuantity < 1) {
+        quantityInput.value = item.quantity;
+        return;
+      }
+
+      item.quantity = newQuantity;
+
+      saveCart();
+      displayCart();
+    });
+
+    const removeButton = article.querySelector("button");
+
+    removeButton.addEventListener("click", () => {
+      cart = cart.filter((cartItem) => cartItem.id !== item.id);
+
+      saveCart();
+      displayCart();
+    });
+
+    cartList.appendChild(article);
+
+    total += item.price * item.quantity;
+  });
+
+  cartTotal.textContent = total.toFixed(2);
+}
+
+function addToCart(product) {
+  const existingItem = cart.find(
+    (cartItem) => cartItem.id === product.id
+  );
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      quantity: 1
+    });
+  }
+
+  saveCart();
+  displayCart();
+}
+
+displayCart();
